@@ -6,12 +6,12 @@ SOURCES =
 
 OBJECTS = $(SOURCES:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -I .
+CFLAGS = -Wall -Wextra -Werror -Imlx
 
 all :    $(NAME)
 
 $(NAME) : $(OBJECTS)
-	${CC} ${CFLAG} -o $@ $^
+	${CC} ${CFLAG} -Lmlx -lmlx -framework OpenGL -framework AppKit -o $@ $^
 
 %.o : %.c $(HEADERS) Makefile
 	$(CC) $(CFLAGS) -c $< -o $@
