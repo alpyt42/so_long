@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/26 16:27:48 by ale-cont         ###   ########.fr       */
+/*   Created: 2022/11/09 12:14:06 by ale-cont          #+#    #+#             */
+/*   Updated: 2022/11/11 11:30:12 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <stdint.h>
-# include "mlx/mlx.h"
-# include <stdio.h>
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	i;
+	size_t	len;
 
-#endif
+	i = 0;
+	len = ft_strlen(dst);
+	if (dstsize == 0 || dstsize <= len)
+		return (ft_strlen(src) + dstsize);
+	while (i < (dstsize - len - 1) && src[i])
+	{
+		dst[len + i] = src[i];
+		i++;
+	}
+	dst[i + len] = '\0';
+	return (ft_strlen(src) + len);
+}

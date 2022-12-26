@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/26 16:27:48 by ale-cont         ###   ########.fr       */
+/*   Created: 2022/11/09 20:39:33 by ale-cont          #+#    #+#             */
+/*   Updated: 2022/11/10 13:50:19 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <limits.h>
-# include <stdint.h>
-# include "mlx/mlx.h"
-# include <stdio.h>
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
+{
+	unsigned char	*s1_bis;
+	unsigned char	*s2_bis;
 
-#endif
+	s1_bis = (unsigned char *)s1;
+	s2_bis = (unsigned char *)s2;
+	while (n--)
+	{
+		if (*s1_bis != *s2_bis)
+			return (*s1_bis - *s2_bis);
+		s1_bis++;
+		s2_bis++;
+	}
+	return (0);
+}
