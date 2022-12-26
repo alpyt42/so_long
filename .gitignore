@@ -1,4 +1,7 @@
 so_long
+
+# MLX Linux
+*.gen
 # Prerequisites
 *.d
 
