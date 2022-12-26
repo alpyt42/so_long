@@ -13,7 +13,7 @@ all :    $(NAME)
 $(NAME) : $(OBJECTS)
 	${CC} ${CFLAG} -Lmlx -lmlx -framework OpenGL -framework AppKit -o $@ $^
 
-%.o : %.c $(HEADERS) Makefile
+%.o : %.c $(HEADERS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean :
