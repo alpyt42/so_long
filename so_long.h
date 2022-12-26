@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/26 16:27:48 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/26 19:16:46 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <limits.h>
-# include <stdint.h>
-# include "mlx/mlx.h"
 # include <stdio.h>
+# include <fcntl.h>
+
+# if defined(__APPLE__) && defined(__MACH__)
+#  include "mlx/mlx.h"
+# else
+#  include "mlx_linux/mlx.h"
+# endif
+
+# include "libft/libft.h"
 
 #endif
