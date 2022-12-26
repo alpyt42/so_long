@@ -24,7 +24,7 @@ $(NAME):	$(OBJS)
 			$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 run:		all
-			./$(NAME) maps/map_bonus.ber
+			./$(NAME) maps/map.ber
 
 clean:
 			$(RM) $(OBJS)
