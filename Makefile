@@ -1,5 +1,5 @@
 NAME		=	so_long
-SRCS		=	srcs/so_long.c srcs/error.c
+SRCS		=	srcs/so_long.c srcs/error.c srcs/maps.c
 SRCS_BONUS	=	
 LIBFT		=	libft/libft.a
 MLX			=	mlx
