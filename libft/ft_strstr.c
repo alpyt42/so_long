@@ -1,19 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/28 15:13:17 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 15:30:20 by ale-cont         ###   ########.fr       */
+/*   Created: 2022/12/28 16:28:49 by ale-cont          #+#    #+#             */
+/*   Updated: 2022/12/28 16:29:20 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "libft.h"
 
-void	display_error(char *error)
+char	*ft_strstr(char *str, char *to_find)
 {
-	ft_putstr_fd(error, 2);
-	exit(EXIT_FAILURE);
+	int i;
+	int j;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		j = 0;
+		while (to_find[j] == str[i + j])
+		{
+			if (to_find[j + 1] == '\0')
+			{
+				return (str + i);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }
