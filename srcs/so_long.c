@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 22:26:29 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:27:54 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@ Ex: ./so_long maps/map.ber\n");
 
 int	main(int argc, char **argv)
 {
-	// int		size = 64;
-	// void	*imgtow;
+	int		size = 64;
+	void	*imgtow;
 	t_data	var;
 
 	check_args(argc, argv);
 	var.mlx = mlx_init();
 	map_size(&var, argv);
 	init_map(&var);
-	// var.mlx_win = mlx_new_window(var.mlx, 640, 120, "So long");
-	// imgtow = mlx_xpm_file_to_image(var.mlx, "./sprite/ball.xpm", &size, &size);
-	// mlx_put_image_to_window(var.mlx, var.mlx_win, imgtow, 64*2, 0);
+	var.mlx_win = mlx_new_window(var.mlx, 640, 120, "So long");
+	imgtow = mlx_xpm_file_to_image(var.mlx, "./sprite/ball.xpm", &size, &size);
+	mlx_put_image_to_window(var.mlx, var.mlx_win, imgtow, 64*2, 0);
 	// printf("%s", var.map[0]);
 	// printf("%s", var.map_buf);
-	// mlx_loop(var.mlx);
+	mlx_loop(var.mlx);
 }
