@@ -3,7 +3,7 @@ SRCS		=	srcs/so_long.c srcs/error.c srcs/maps.c
 SRCS_BONUS	=	
 LIBFT		=	libft/libft.a
 MLX			=	mlx
-CFLAGS		=	-Wall -Wextra -Werror
+CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
 MLXFLAGS	=	-L ./mlx/ -lmlx -framework OpenGL -framework AppKit -lz
 RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
@@ -26,10 +26,10 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)
 			@echo "$(GREEN)Compilation ${CLR_RMV}of ${CYAN}$(NAME) ${CLR_RMV}..."
-			@echo "$(BLUE)MAKING LIBFT ${CLR_RMV}of ${CYAN}$(NAME) ${CLR_RMV}..."
+			@echo "$(BLUE)MAKING LIBFT ${CLR_RMV}"
 			@make -C libft
 			@echo "$(YELLOW)libft.a created[0m ✔️"
-			@echo "$(BLUE)MAKING MLX ${CLR_RMV}of ${CYAN}$(NAME) ${CLR_RMV}..."
+			@echo "$(BLUE)MAKING MLX ${CLR_RMV}"
 			@make -C ${MLX}
 			@echo "$(YELLOW)libmlx.a created[0m ✔️"
 			$(CC) $(OBJS) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME)

@@ -6,11 +6,19 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 19:01:29 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/28 22:26:29 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void	init_map(t_data *var)
+{
+	var->map = (char **)malloc(sizeof(char *) * (var->y_map + 1));
+	if (!var->map)
+		display_error(strerror(errno));
+	var->map = ft_split(var->map_buf, '\n');
+}
 
 void	check_args(int argc, char **argv)
 {
@@ -24,29 +32,20 @@ Ex: ./so_long maps/map.ber\n");
 		display_error("\033[1;33mInvalid map extension. Use .ber for maps\033[0m\n");
 }
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_len + x * (data->bpp / 8));
-	*(unsigned int*)dst = color;
-}
-
 int	main(int argc, char **argv)
 {
-	void	*mlx;
-	void	*mlx_win;
-	int		size = 64;
-	void	*imgtow;
-	t_data	img;
+	// int		size = 64;
+	// void	*imgtow;
+	t_data	var;
 
 	check_args(argc, argv);
-	mlx = mlx_init();
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-	img.img = mlx_new_image(mlx, 1920, 1080);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.line_len,
-								&img.endian);
-	imgtow = mlx_xpm_file_to_image(mlx, "./sprite/mate.xpm", &size, &size);
-	mlx_put_image_to_window(mlx, mlx_win, imgtow, 64 * 10, 64 * 10);
-	mlx_loop(mlx);
+	var.mlx = mlx_init();
+	map_size(&var, argv);
+	init_map(&var);
+	// var.mlx_win = mlx_new_window(var.mlx, 640, 120, "So long");
+	// imgtow = mlx_xpm_file_to_image(var.mlx, "./sprite/ball.xpm", &size, &size);
+	// mlx_put_image_to_window(var.mlx, var.mlx_win, imgtow, 64*2, 0);
+	// printf("%s", var.map[0]);
+	// printf("%s", var.map_buf);
+	// mlx_loop(var.mlx);
 }
