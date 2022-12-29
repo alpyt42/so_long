@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 12:19:54 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:06:02 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ typedef struct s_data {
 void	display_error(char *error);
 void	map_size(t_data *var, char **argv);
 void	load_map(t_data *var, char **argv);
+void	print_map(t_data *var);
 
 #endif

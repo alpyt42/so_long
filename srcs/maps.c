@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 12:39:53 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 13:35:47 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	map_size(t_data *var, char **argv)
 	close(fd);
 }
 
-void	put_img(t_data *var, int row, int col)
+static void	put_img(t_data *var, int row, int col)
 {
 	if (var->map[row][col] == '0')
 		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/grass.xpm", &var->col_img, &var->row_img);
@@ -42,9 +42,14 @@ void	put_img(t_data *var, int row, int col)
 	if (var->map[row][col] == 'C')
 		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ball.xpm", &var->col_img, &var->row_img);
 	if (var->map[row][col] == 'E')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ball.xpm", &var->col_img, &var->row_img);
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe_b.xpm", &var->col_img, &var->row_img);
+	if (var->map[row][col] == 'e')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe.xpm", &var->col_img, &var->row_img);
 	if (var->map[row][col] == 'P')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ball.xpm", &var->col_img, &var->row_img);
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zizou.xpm", &var->col_img, &var->row_img);
+	if (var->map[row][col] == 'U')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/mate.xpm", &var->col_img, &var->row_img);
+	mlx_put_image_to_window(var->mlx, var->mlx_win, var->img, SPRITE_W * col, SPRITE_H * row);
 }
 
 void	load_map(t_data *var, char **argv)
@@ -70,13 +75,14 @@ void	print_map(t_data *var)
 	int	row;
 	int	col;
 
-	row = 0;
-	while (row < var->row_map)
+	row = -1;
+	while (++row < var->row_map)
 	{
-		col = 0;
-		while (col < var->col_map)
+		col = -1;
+		while (++col < var->col_map)
 		{
-			
+			printf("%c", var->map[row][col]);
+			put_img(var, row, col);
 		}
 	}
 }
