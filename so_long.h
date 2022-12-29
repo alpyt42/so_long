@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 17:38:19 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 19:46:56 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,6 @@
 
 # define X_EVENT_KEY_PRESS		2
 # define X_EVENT_KEY_EXIT		17
-
-# if defined(__APPLE__) && defined(__MACH__)
-#  define LEFT_KEY				123	
-#  define RIGHT_KEY				124	
-#  define UP_KEY				126
-#  define DOWN_KEY				125	
-#  define A_KEY					0
-#  define S_KEY					1
-#  define D_KEY					2
-#  define W_KEY					13
-#  define ESC 					53
-
-# else
-#  define LEFT_KEY				65361
-#  define RIGHT_KEY				65363
-#  define UP_KEY				65362
-#  define DOWN_KEY				65364
-#  define A_KEY					97
-#  define W_KEY					119
-#  define S_KEY					115
-#  define D_KEY					100
-#  define ESC					65307
-# endif
 
 # define SPRITE_H				64
 # define SPRITE_W				64
@@ -85,6 +62,9 @@ typedef struct s_data {
 // User Position
 	int		col_user;
 	int		row_user;
+// Exit Position
+	int		col_ex;
+	int		row_ex;
 	t_map	arg;
 }	t_data;
 
@@ -94,5 +74,8 @@ void	load_map(t_data *var, char **argv);
 void	print_map(t_data *var);
 void	check_map(t_data *var);
 void	get_position(t_data *var);
+int		key(int key, t_data *var);
+void	check_move(t_data *var, int key);
+int		free_all(t_data *var, char *msg);
 
 #endif

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_pos.c                                         :+:      :+:    :+:   */
+/*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 17:30:51 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 18:39:33 by ale-cont         ###   ########.fr       */
+/*   Created: 2022/12/29 17:44:57 by ale-cont          #+#    #+#             */
+/*   Updated: 2022/12/29 20:24:53 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	get_user_position(t_data *var)
+static void	check_loser(t_data *var)
 {
 	int	row;
 	int	col;
@@ -22,35 +22,28 @@ static void	get_user_position(t_data *var)
 	{
 		col = -1;
 		while (++col < var->col_map)
-			if (var->map[row][col] == 'P')
-			{
-				var->row_user = row;
-				var->col_user = col;
-			}
+			if (var->map[row][col] == 'l')
+				free_all(var, "LOOOOOOOOSER !");
 	}
 }
 
-static void	get_exit_position(t_data *var)
+int	key(int key, t_data *var)
 {
-	int	row;
-	int	col;
+	int	init_steps;
 
-	row = -1;
-	while (++row < var->row_map)
+	init_steps = var->steps;
+	if (key == 53)
+		free_all(var, "Game closed\n");
+	else
 	{
-		col = -1;
-		while (++col < var->col_map)
-			if (var->map[row][col] == 'E')
-			{
-				var->row_ex = row;
-				var->col_ex = col;
-			}
+		check_loser(var);
+		check_move(var, key);
 	}
-}
-
-
-void	get_position(t_data *var)
-{
-	get_user_position(var);
-	get_exit_position(var);
+	if (init_steps != var->steps)
+		printf("Steps: %d\n", var->steps);
+	if (var->arg.obj == 0)
+		var->map[var->row_ex][var->col_ex] = 'e';
+	// mlx_string_put(var->mlx, var->mlx_win, 10, 10, 0x000000FF, "steps");
+	print_map(var);
+	return (0);
 }
