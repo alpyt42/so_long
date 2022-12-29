@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 22:11:53 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 12:19:54 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,29 +60,29 @@ typedef struct s_data {
 // Data for MLX
 	void	*mlx;
 	void	*mlx_win;
-	void	*img;
+	void	*img; // put image here
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
 // Size of img;
-	int		x_img; //count of column
-	int		y_img; //count of row
+	int		col_img; //count of column
+	int		row_img; //count of row
 // Size of map
-	int		x_map; //count of column
-	int		y_map; //count of row
+	int		col_map; //count of column
+	int		row_map; //count of row
 // Map info
-	char	*map_buf;
 	char	**map; // include map, row by row (split with \n)
 // Count of steps/collectibles
 	int		steps;
 	int		obj;
 // User Position
-	int		x_user;
-	int		y_user;
+	int		col_user;
+	int		row_user;
 }	t_data;
 
 void	display_error(char *error);
 void	map_size(t_data *var, char **argv);
+void	load_map(t_data *var, char **argv);
 
 #endif
