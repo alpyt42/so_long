@@ -1,5 +1,6 @@
 NAME		=	so_long
-SRCS		=	srcs/so_long.c srcs/error.c srcs/maps.c
+SRCS		=	srcs/so_long.c srcs/error.c srcs/maps.c srcs/check_map.c srcs/game_pos.c \
+				srcs/movements.c
 SRCS_BONUS	=	
 LIBFT		=	libft/libft.a
 MLX			=	mlx

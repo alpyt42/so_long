@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   gnl_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:54:39 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 21:27:51 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 15:38:42 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*gnl_fill_line(char *left_str)
 		return (NULL);
 	while (left_str[len] != '\n' && left_str[len])
 		len++;
-	line = (char *)malloc(sizeof(char) * (len + 2));
+	line = (char *)malloc(sizeof(char) * (len + 1));
 	if (!line)
 		return (NULL);
 	len = 0;
@@ -76,8 +76,6 @@ char	*gnl_fill_line(char *left_str)
 		line[len] = left_str[len];
 		len++;
 	}
-	if (left_str[len] == '\n')
-		line[len++] = '\n';
 	line[len] = '\0';
 	return (line);
 }

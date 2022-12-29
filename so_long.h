@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 13:06:02 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:38:19 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,13 @@
 # define SPRITE_H				64
 # define SPRITE_W				64
 
+typedef struct s_map {
+	int	obj; // collectibles
+	int	start;
+	int	ex; // exit
+	int	en; // enemies
+}	t_map;
+
 typedef struct s_data {
 // Data for MLX
 	void	*mlx;
@@ -75,15 +82,17 @@ typedef struct s_data {
 	char	**map; // include map, row by row (split with \n)
 // Count of steps/collectibles
 	int		steps;
-	int		obj;
 // User Position
 	int		col_user;
 	int		row_user;
+	t_map	arg;
 }	t_data;
 
 void	display_error(char *error);
 void	map_size(t_data *var, char **argv);
 void	load_map(t_data *var, char **argv);
 void	print_map(t_data *var);
+void	check_map(t_data *var);
+void	get_position(t_data *var);
 
 #endif

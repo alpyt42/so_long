@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 13:45:50 by ale-cont         ###   ########.fr       */
+/*   Updated: 2022/12/29 17:31:14 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 void	init_map(t_data *var)
 {
 	var->steps = 0;
+	var->arg.en = 0;
+	var->arg.ex = 0;
+	var->arg.obj = 0;
+	var->arg.start = 0;
 }
 
 void	check_args(int argc, char **argv)
@@ -37,6 +41,8 @@ int	main(int argc, char **argv)
 	map_size(&var, argv);
 	init_map(&var);
 	load_map(&var, argv);
+	check_map(&var);
+	get_position(&var);
 	var.mlx = mlx_init();
 	var.mlx_win = mlx_new_window(var.mlx, var.col_map * SPRITE_W, var.row_map * SPRITE_H, "So long");
 	print_map(&var);
