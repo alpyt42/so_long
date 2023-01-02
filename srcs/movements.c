@@ -6,13 +6,13 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:49:17 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 20:19:18 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:38:01 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	up(t_data *var)
+static void	up(t_data *var)
 {
 	if (var->map[var->row_user + 1][var->col_user] == 'U')
 	{
@@ -38,7 +38,7 @@ void	up(t_data *var)
 	}
 }
 
-void	down(t_data *var)
+static void	down(t_data *var)
 {
 	if (var->map[var->row_user - 1][var->col_user] == 'U')
 	{
@@ -64,7 +64,7 @@ void	down(t_data *var)
 	}
 }
 
-void	right(t_data *var)
+static void	right(t_data *var)
 {
 	if (var->map[var->row_user][var->col_user + 1] == 'U')
 	{
@@ -90,7 +90,7 @@ void	right(t_data *var)
 	}
 }
 
-void	left(t_data *var)
+static void	left(t_data *var)
 {
 	if (var->map[var->row_user][var->col_user - 1] == 'U')
 	{
@@ -118,28 +118,24 @@ void	left(t_data *var)
 
 void	check_move(t_data *var, int key)
 {
-	if (key == 1 || key == 115)
-	{
-		if (var->map[var->row_user + 1 ][var->col_user] == 'e')
-			free_all(var, "Good Job !");
+	if ((key == 1 || key == 115) 
+		&& var->map[var->row_user + 1 ][var->col_user] == 'e')
+			winner(var, 'U');
+	else if (key == 1 || key == 115)
 		up(var);
-	}
-	if (key == 13 || key == 119)
-	{
-		if (var->map[var->row_user - 1][var->col_user] == 'e')
-			free_all(var, "Good Job !");
+	else if ((key == 13 || key == 119) 
+		&& var->map[var->row_user - 1][var->col_user] == 'e')
+			winner(var, 'D');
+	else if (key == 13 || key == 119)
 		down(var);
-	}
-	if (key == 0 || key == 97)
-	{
-		if (var->map[var->row_user][var->col_user - 1] == 'e')
-			free_all(var, "Good Job !");
+	else if ((key == 0 || key == 97) 
+		&& var->map[var->row_user][var->col_user - 1] == 'e')
+			winner(var, 'L');
+	else if (key == 0 || key == 97)
 		left(var);
-	}
-	if (key == 2 || key == 100)
-	{
-		if (var->map[var->row_user][var->col_user + 1] == 'e')
-			free_all(var, "Good Job !");
+	else if ((key == 2 || key == 100) 
+		&& var->map[var->row_user][var->col_user + 1] == 'e')
+			winner(var, 'R');
+	else if (key == 2 || key == 100)
 		right(var);
-	}
 }

@@ -6,25 +6,25 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:57 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 20:24:53 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:48:46 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static void	check_loser(t_data *var)
+void	winner(t_data *var, char c)
 {
-	int	row;
-	int	col;
-
-	row = -1;
-	while (++row < var->row_map)
-	{
-		col = -1;
-		while (++col < var->col_map)
-			if (var->map[row][col] == 'l')
-				free_all(var, "LOOOOOOOOSER !");
-	}
+	if (c == 'D')
+		var->map[var->row_user - 1][var->col_user] = 'x';
+	else if (c == 'U')
+		var->map[var->row_user + 1][var->col_user] = 'x';
+	else if (c == 'L')
+		var->map[var->row_user][var->col_user - 1] = 'x';
+	else if (c == 'R')
+		var->map[var->row_user][var->col_user + 1] = 'x';
+	var->map[var->row_user][var->col_user] = '0';
+	var->steps++;
+	var->arg.win = 1;
 }
 
 int	key(int key, t_data *var)
@@ -36,14 +36,16 @@ int	key(int key, t_data *var)
 		free_all(var, "Game closed\n");
 	else
 	{
-		check_loser(var);
+		if (ft_find_char(var, 'l'))
+			free_all(var, "LOOOOOOOOSER !");
+		else if (var->arg.win == 1)
+			free_all(var, "YOU WIN !");
 		check_move(var, key);
 	}
+	if (var->arg.obj == 0 && var->arg.win != 1)
+		var->map[var->row_ex][var->col_ex] = 'e';
 	if (init_steps != var->steps)
 		printf("Steps: %d\n", var->steps);
-	if (var->arg.obj == 0)
-		var->map[var->row_ex][var->col_ex] = 'e';
-	// mlx_string_put(var->mlx, var->mlx_win, 10, 10, 0x000000FF, "steps");
 	print_map(var);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 19:46:56 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:18:23 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_map {
 	int	start;
 	int	ex; // exit
 	int	en; // enemies
+	int	win;
 }	t_map;
 
 typedef struct s_data {
@@ -77,5 +78,7 @@ void	get_position(t_data *var);
 int		key(int key, t_data *var);
 void	check_move(t_data *var, int key);
 int		free_all(t_data *var, char *msg);
+int		ft_find_char(t_data *var, char c);
+void	winner(t_data *var, char c);
 
 #endif
