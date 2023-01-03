@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 20:32:11 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:20:42 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	main(int argc, char **argv)
 	init_map(&var);
 	load_map(&var, argv);
 	check_map(&var);
-	var.mlx = mlx_init();
-	var.mlx_win = mlx_new_window(var.mlx, var.col_map * SPRITE_W, var.row_map * SPRITE_H, "So long");
-	get_position(&var);
-	// printf("%d", var.arg.obj);
-	mlx_hook(var.mlx_win, 2, 1L << 0, key, &var);
-	mlx_hook(var.mlx_win, 17, 1L << 0, free_all, &var);
-	print_map(&var);
-	mlx_loop(var.mlx);
+	// var.mlx = mlx_init();
+	// var.mlx_win = mlx_new_window(var.mlx, var.col_map * SPRITE_W, var.row_map * SPRITE_H, "So long");
+	// get_position(&var);
+	// // printf("%d", var.arg.obj);
+	// mlx_hook(var.mlx_win, 2, 1L << 0, key, &var);
+	// mlx_hook(var.mlx_win, 17, 1L << 0, free_all, &var);
+	// print_map(&var);
+	// mlx_loop(var.mlx);
 }

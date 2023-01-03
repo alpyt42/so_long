@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:43:18 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 21:31:09 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:34:17 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,7 @@ int		gnl_locate_return(char *s);
 char	*gnl(int fd);
 char	*gnl_new_str(char *left_str);
 char	*gnl_fill_line(char *left_str);
+char	**ft_arrdup(char **arr);
+int		ft_arrlen(char **arr);
+void	ft_free_arr(char **arr);
 #endif

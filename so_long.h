@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 20:18:23 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/03 19:20:33 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,6 @@ void	check_move(t_data *var, int key);
 int		free_all(t_data *var, char *msg);
 int		ft_find_char(t_data *var, char c);
 void	winner(t_data *var, char c);
+int		backtracking(t_data *var);
 
 #endif

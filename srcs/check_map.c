@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 14:20:50 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/29 20:10:18 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/03 18:21:25 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ static int	check_arg(t_data *var)
 	return (0);
 }
 
-// static int	check_path(t_data *var)
-// {
-	
-// }
-
 static int	check_wall(t_data *var)
 {
 	int	row;
@@ -74,4 +69,6 @@ void	check_map(t_data *var)
 		display_error("\033[1;33mInvalid map (Check size/walls) !\033[0m\n");
 	if (check_arg(var) != 0)
 		display_error("\033[1;33mInvalid map (Check characters used) !\033[0m\n");
+	if(!backtracking(var))
+		display_error("\033[1;33mInvalid map (No path found) !\033[0m\n");
 }
