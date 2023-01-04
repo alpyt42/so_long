@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 17:14:52 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:13:45 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Ex: ./so_long maps/map.ber\n");
 		display_error(var, "\033[1;31mToo many arguments.\n\033[0m\
 Ex: ./so_long maps/map.ber\n");
 	if (ft_strstr(argv[1], ".ber") == NULL)
-		display_error(var, "\033[1;33mUse .ber for maps\033[0m\n");
+		display_error(var, "Use .ber for maps\n");
 }
 
 int	main(int argc, char **argv)
