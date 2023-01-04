@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 15:11:47 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:57:35 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_map(t_data *var)
 {
-	var->steps = 0;
+	var->steps = 1;
 	var->arg.en = 0;
 	var->arg.ex = 0;
 	var->arg.obj = 0;

@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 15:38:29 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:29:51 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	print_map(t_data *var)
 {
 	int		row;
 	int		col;
-	char	*count;
+	char	*count_obj;
+	char	*steps;
 
 	row = -1;
 	while (++row < var->row_map)
@@ -115,13 +116,15 @@ void	print_map(t_data *var)
 		while (++col < var->col_map)
 			put_img(var, row, col);
 	}
+	count_obj = ft_itoa(var->arg.obj);
+	steps = ft_itoa(var->steps - 1);
 	mlx_string_put(var->mlx, var->mlx_win, 10, 20, 0xFFFFFF, "WORLD CUP GAME 2006");
 	mlx_string_put(var->mlx, var->mlx_win, 10, 30, 0xFFFFFF, "STEPS :");
-	mlx_string_put(var->mlx, var->mlx_win, 70, 30, 0xFFFFFF, ft_itoa(var->steps));
+	mlx_string_put(var->mlx, var->mlx_win, 70, 30, 0xFFFFFF, steps);
 	mlx_string_put(var->mlx, var->mlx_win, 10, 40, 0xFFFFFF, "OBJECTS :");
-	count = ft_itoa(var->arg.obj);
-	mlx_string_put(var->mlx, var->mlx_win, 80, 40, 0xFFFFFF, count);
-	free(count);
+	mlx_string_put(var->mlx, var->mlx_win, 80, 40, 0xFFFFFF, count_obj);
+	free(count_obj);
+	free(steps);
 	if (ft_find_char(var->map, 'l'))
 		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0xFF0000, "COUP DE BOULE (YOU LOSE)");
 	if (ft_find_char(var->map, 'x'))
