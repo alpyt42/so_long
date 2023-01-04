@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:57 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 17:05:10 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:28:20 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,7 @@ int	key(int key, t_data *var)
 		ft_putstr_fd("\n", 1);
 	}
 	print_map(var);
+	if (ft_find_char(var->map, 'l') || ft_find_char(var->map, 'x'))
+		mlx_string_put(var->mlx, var->mlx_win, 10, 60, 0x800000FF, "Press any");
 	return (0);
 }
