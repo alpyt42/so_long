@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:32:45 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 15:57:35 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:14:52 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_map(t_data *var)
 {
-	var->steps = 1;
+	var->steps = 0;
 	var->arg.en = 0;
 	var->arg.ex = 0;
 	var->arg.obj = 0;
@@ -31,7 +31,7 @@ Ex: ./so_long maps/map.ber\n");
 		display_error(var, "\033[1;31mToo many arguments.\n\033[0m\
 Ex: ./so_long maps/map.ber\n");
 	if (ft_strstr(argv[1], ".ber") == NULL)
-		display_error(var, "\033[1;33mInvalid map extension. Use .ber for maps\033[0m\n");
+		display_error(var, "\033[1;33mUse .ber for maps\033[0m\n");
 }
 
 int	main(int argc, char **argv)
@@ -46,7 +46,11 @@ int	main(int argc, char **argv)
 	load_map(&var, argv);
 	check_map(&var);
 	var.mlx = mlx_init();
-	var.mlx_win = mlx_new_window(var.mlx, var.col_map * SPRITE_W, var.row_map * SPRITE_H, "So long");
+	var.mlx_win = mlx_new_window(var.mlx, var.col_map * SPRITE_W,
+			var.row_map * SPRITE_H, "So long");
+	ft_putstr_fd("Steps : ", 1);
+	ft_putnbr_fd(var.steps, 1);
+	ft_putstr_fd("\n", 1);
 	mlx_hook(var.mlx_win, 2, 1L << 0, key, &var);
 	mlx_hook(var.mlx_win, 17, 1L << 0, free_all, &var);
 	print_map(&var);

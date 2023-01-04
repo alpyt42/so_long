@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:57 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 16:03:15 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:05:10 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	key(int key, t_data *var)
 
 	init_steps = var->steps;
 	if (key == 53)
-		free_all(var, "Game closed\n");
+		free_all(var, "Game closed");
 	else
 	{
 		if (ft_find_char(var->map, 'l'))
@@ -47,7 +47,7 @@ int	key(int key, t_data *var)
 	if (init_steps != var->steps)
 	{
 		ft_putstr_fd("Steps : ", 1);
-		ft_putnbr_fd(init_steps, 1);
+		ft_putnbr_fd(init_steps + 1, 1);
 		ft_putstr_fd("\n", 1);
 	}
 	print_map(var);

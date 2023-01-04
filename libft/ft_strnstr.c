@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:50:57 by ale-cont          #+#    #+#             */
-/*   Updated: 2022/12/28 16:21:25 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:18:38 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	if (*needle == '\0' || needle == NULL)
-		return ((char*)haystack);
+		return ((char *)haystack);
 	while (haystack[i] != '\0' && i < len)
 	{
 		j = 0;
@@ -27,7 +27,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		{
 			if (needle[j + 1] == '\0')
 			{
-				return ((char*)haystack + i);
+				return ((char *)haystack + i);
 			}
 			j++;
 		}

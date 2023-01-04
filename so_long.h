@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 12:42:16 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:23:08 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,30 @@
 # define SPRITE_W				64
 
 typedef struct s_map {
-	int	obj; // collectibles
+	int	obj;
 	int	start;
-	int	ex; // exit
-	int	en; // enemies
+	int	ex;
+	int	en;
 	int	win;
 }	t_map;
 
 typedef struct s_data {
-// Data for MLX
 	void	*mlx;
 	void	*mlx_win;
-	void	*img; // put image here
+	void	*img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-// Size of img;
-	int		col_img; //count of column
-	int		row_img; //count of row
-// Size of map
-	int		col_map; //count of column
-	int		row_map; //count of row
-// Map info
-	char	**map; // include map, row by row (split with \n)
-	char	**bt_map; // include test_map, row by row (split with \n)
-// Count of steps/collectibles
+	int		col_img;
+	int		row_img;
+	int		col_map;
+	int		row_map;
+	char	**map;
+	char	**bt_map;
 	int		steps;
-// User Position
 	int		col_user;
 	int		row_user;
-// Exit Position
 	int		col_ex;
 	int		row_ex;
 	t_map	arg;

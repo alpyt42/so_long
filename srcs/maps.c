@@ -6,27 +6,11 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 16:29:51 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:31:44 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-int	ft_find_char(char **str, char c)
-{
-	int	row;
-	int	col;
-
-	row = -1;
-	while (str[++row])
-	{
-		col = -1;
-		while (str[row][++col])
-			if (str[row][col] == c)
-				return (1);
-	}
-	return (0);
-}
 
 void	map_size(t_data *var, char **argv)
 {
@@ -39,7 +23,7 @@ void	map_size(t_data *var, char **argv)
 	if (fd == -1)
 		display_error(var, strerror(errno));
 	res_gnl = gnl(fd);
-	while(res_gnl)
+	while (res_gnl)
 	{
 		var->col_map = ft_strlen(res_gnl);
 		free(res_gnl);
@@ -50,37 +34,43 @@ void	map_size(t_data *var, char **argv)
 	close(fd);
 }
 
-static void	put_img(t_data *var, int row, int col)
+static void	put_img_b(t_data *var, int row, int col)
+{
+	if (var->map[row][col] == 'P')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zizou.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'l')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zvm.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'U')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/mate.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'x')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/win.xpm",
+				&var->col_img, &var->row_img);
+	mlx_put_image_to_window(var->mlx, var->mlx_win, var->img,
+		SPRITE_W * col, SPRITE_H * row);
+	mlx_destroy_image(var->mlx, var->img);
+}
+
+static void	put_img_a(t_data *var, int row, int col)
 {
 	if (var->map[row][col] == '0')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/grass.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == '1')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ground.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'C')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ball.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'E')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe_b.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'e')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'P')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zizou.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'l')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zvm.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'U')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/mate.xpm", 
-			&var->col_img, &var->row_img);
-	else if (var->map[row][col] == 'x')
-		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/win.xpm", 
-			&var->col_img, &var->row_img);
-	mlx_put_image_to_window(var->mlx, var->mlx_win, var->img, SPRITE_W * col, SPRITE_H * row);
-	mlx_destroy_image(var->mlx, var->img);
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/grass.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == '1')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ground.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'C')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/ball.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'E')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe_b.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'e')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe.xpm",
+				&var->col_img, &var->row_img);
+	put_img_b(var, row, col);
 }
 
 void	load_map(t_data *var, char **argv)
@@ -114,11 +104,11 @@ void	print_map(t_data *var)
 	{
 		col = -1;
 		while (++col < var->col_map)
-			put_img(var, row, col);
+			put_img_a(var, row, col);
 	}
 	count_obj = ft_itoa(var->arg.obj);
-	steps = ft_itoa(var->steps - 1);
-	mlx_string_put(var->mlx, var->mlx_win, 10, 20, 0xFFFFFF, "WORLD CUP GAME 2006");
+	steps = ft_itoa(var->steps);
+	mlx_string_put(var->mlx, var->mlx_win, 10, 20, 0xFFFFFF, "WORLD CUP 2006");
 	mlx_string_put(var->mlx, var->mlx_win, 10, 30, 0xFFFFFF, "STEPS :");
 	mlx_string_put(var->mlx, var->mlx_win, 70, 30, 0xFFFFFF, steps);
 	mlx_string_put(var->mlx, var->mlx_win, 10, 40, 0xFFFFFF, "OBJECTS :");
@@ -126,7 +116,7 @@ void	print_map(t_data *var)
 	free(count_obj);
 	free(steps);
 	if (ft_find_char(var->map, 'l'))
-		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0xFF0000, "COUP DE BOULE (YOU LOSE)");
+		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0xFF0000, "You Lose !");
 	if (ft_find_char(var->map, 'x'))
-		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0x800000FF, "CHAMPION !! (press space to win)");
+		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0x800000FF, "CHAMPION!");
 }
