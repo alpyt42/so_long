@@ -6,23 +6,23 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 21:49:43 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:38:29 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	ft_find_char(t_data *var, char c)
+int	ft_find_char(char **str, char c)
 {
 	int	row;
 	int	col;
 
 	row = -1;
-	while (++row < var->row_map)
+	while (str[++row])
 	{
 		col = -1;
-		while (++col < var->col_map)
-			if (var->map[row][col] == c)
+		while (str[row][++col])
+			if (str[row][col] == c)
 				return (1);
 	}
 	return (0);
@@ -37,11 +37,12 @@ void	map_size(t_data *var, char **argv)
 	var->row_map = 0;
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		display_error(strerror(errno));
+		display_error(var, strerror(errno));
 	res_gnl = gnl(fd);
 	while(res_gnl)
 	{
 		var->col_map = ft_strlen(res_gnl);
+		free(res_gnl);
 		var->row_map++;
 		res_gnl = gnl(fd);
 	}
@@ -90,20 +91,22 @@ void	load_map(t_data *var, char **argv)
 	row = -1;
 	var->map = (char **)malloc(sizeof(char *) * (var->row_map + 1));
 	if (!var->map)
-		display_error(strerror(errno));
+		display_error(var, strerror(errno));
 	var->map[var->row_map] = NULL;
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
-		display_error(strerror(errno));
+		display_error(var, strerror(errno));
 	while (++row < var->row_map)
 		var->map[row] = gnl(fd);
+	var->bt_map = ft_arrdup(var->map);
 	close(fd);
 }
 
 void	print_map(t_data *var)
 {
-	int	row;
-	int	col;
+	int		row;
+	int		col;
+	char	*count;
 
 	row = -1;
 	while (++row < var->row_map)
@@ -116,9 +119,11 @@ void	print_map(t_data *var)
 	mlx_string_put(var->mlx, var->mlx_win, 10, 30, 0xFFFFFF, "STEPS :");
 	mlx_string_put(var->mlx, var->mlx_win, 70, 30, 0xFFFFFF, ft_itoa(var->steps));
 	mlx_string_put(var->mlx, var->mlx_win, 10, 40, 0xFFFFFF, "OBJECTS :");
-	mlx_string_put(var->mlx, var->mlx_win, 80, 40, 0xFFFFFF, ft_itoa(var->arg.obj));
-	if (ft_find_char(var, 'l'))
+	count = ft_itoa(var->arg.obj);
+	mlx_string_put(var->mlx, var->mlx_win, 80, 40, 0xFFFFFF, count);
+	free(count);
+	if (ft_find_char(var->map, 'l'))
 		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0xFF0000, "COUP DE BOULE (YOU LOSE)");
-	if (ft_find_char(var, 'x'))
+	if (ft_find_char(var->map, 'x'))
 		mlx_string_put(var->mlx, var->mlx_win, 10, 50, 0x800000FF, "CHAMPION !! (press space to win)");
 }

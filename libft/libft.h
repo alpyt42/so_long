@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:43:18 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/03 18:34:17 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:28:03 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdlib.h>
 # include <limits.h>
 # include <stdint.h>
+# include <stdio.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -80,4 +82,11 @@ char	*gnl_fill_line(char *left_str);
 char	**ft_arrdup(char **arr);
 int		ft_arrlen(char **arr);
 void	ft_free_arr(char **arr);
+int		ft_printf(const char *format, ...);
+int		ft_putchar(char c);
+int		ft_putstr(char *str);
+int		ft_putnbr_int(long int nbr, char *base);
+int		ft_putnbr_uns(unsigned long nbr, char *base);
+int		opt_list(char c);
+int		display_opt(char c, va_list *ap);
 #endif

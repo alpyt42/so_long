@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 18:37:11 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/03 19:20:33 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:42:16 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_data {
 	int		row_map; //count of row
 // Map info
 	char	**map; // include map, row by row (split with \n)
+	char	**bt_map; // include test_map, row by row (split with \n)
 // Count of steps/collectibles
 	int		steps;
 // User Position
@@ -69,7 +70,7 @@ typedef struct s_data {
 	t_map	arg;
 }	t_data;
 
-void	display_error(char *error);
+void	display_error(t_data *var, char *error);
 void	map_size(t_data *var, char **argv);
 void	load_map(t_data *var, char **argv);
 void	print_map(t_data *var);
@@ -78,8 +79,8 @@ void	get_position(t_data *var);
 int		key(int key, t_data *var);
 void	check_move(t_data *var, int key);
 int		free_all(t_data *var, char *msg);
-int		ft_find_char(t_data *var, char c);
+int		ft_find_char(char **str, char c);
 void	winner(t_data *var, char c);
-int		backtracking(t_data *var);
+void	check_args(t_data *var, int argc, char **argv);
 
 #endif

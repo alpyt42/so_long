@@ -1,10 +1,9 @@
 NAME		=	so_long
 SRCS		=	srcs/so_long.c srcs/error.c srcs/maps.c srcs/check_map.c srcs/game_pos.c \
-				srcs/movements.c srcs/key.c srcs/shut_mlx.c srcs/backtracking_map.c
-SRCS_BONUS	=	
+				srcs/movements.c srcs/key.c srcs/shut_mlx.c
 LIBFT		=	libft/libft.a
 MLX			=	mlx
-CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS		=	-Wall -Wextra -Werror -g3
 MLXFLAGS	=	-L ./mlx/ -lmlx -framework OpenGL -framework AppKit -lz
 RM			=	rm -f
 OBJS		=	$(SRCS:%.c=%.o)
@@ -39,15 +38,8 @@ $(NAME):	$(OBJS)
 %o:			%.c
 			$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
-bonus: 		$(OBJS_BONUS)
-			@echo "Making LIBFT"
-			@make -C libft
-			@echo "Making MLX"
-			@make -C ${MLX}
-			$(CC) $(OBJS_BONUS) $(LIBFT) $(MLXFLAGS) $(CFLAGS) -o $(NAME)
-
 clean:
-			$(RM) $(OBJS) $(OBJS_BONUS)
+			$(RM) $(OBJS)
 			@make clean -C ${MLX}
 			@ echo "$(RED)Clean $(CYAN)MLX$(CLR_RMV) ✔️"
 			@make clean -C libft

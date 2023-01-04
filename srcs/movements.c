@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:49:17 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 20:38:01 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:38:04 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,24 +118,24 @@ static void	left(t_data *var)
 
 void	check_move(t_data *var, int key)
 {
-	if ((key == 1 || key == 115) 
+	if ((key == 1) 
 		&& var->map[var->row_user + 1 ][var->col_user] == 'e')
 			winner(var, 'U');
-	else if (key == 1 || key == 115)
+	else if (key == 1)
 		up(var);
-	else if ((key == 13 || key == 119) 
+	else if ((key == 13) 
 		&& var->map[var->row_user - 1][var->col_user] == 'e')
 			winner(var, 'D');
-	else if (key == 13 || key == 119)
+	else if (key == 13)
 		down(var);
-	else if ((key == 0 || key == 97) 
+	else if ((key == 0) 
 		&& var->map[var->row_user][var->col_user - 1] == 'e')
 			winner(var, 'L');
-	else if (key == 0 || key == 97)
+	else if (key == 0 )
 		left(var);
-	else if ((key == 2 || key == 100) 
+	else if ((key == 2) 
 		&& var->map[var->row_user][var->col_user + 1] == 'e')
 			winner(var, 'R');
-	else if (key == 2 || key == 100)
+	else if (key == 2)
 		right(var);
 }

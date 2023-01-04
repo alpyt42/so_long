@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 17:44:57 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/02 21:48:46 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/04 15:41:30 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	winner(t_data *var, char c)
 
 int	key(int key, t_data *var)
 {
-	int	init_steps;
+	int		init_steps;
 
 	init_steps = var->steps;
 	if (key == 53)
 		free_all(var, "Game closed\n");
 	else
 	{
-		if (ft_find_char(var, 'l'))
+		if (ft_find_char(var->map, 'l'))
 			free_all(var, "LOOOOOOOOSER !");
 		else if (var->arg.win == 1)
 			free_all(var, "YOU WIN !");
@@ -45,7 +45,11 @@ int	key(int key, t_data *var)
 	if (var->arg.obj == 0 && var->arg.win != 1)
 		var->map[var->row_ex][var->col_ex] = 'e';
 	if (init_steps != var->steps)
-		printf("Steps: %d\n", var->steps);
+	{
+		ft_putstr_fd("Steps : ", 1);
+		ft_putnbr_fd(init_steps, 1);
+		ft_putstr_fd("\n", 1);
+	}
 	print_map(var);
 	return (0);
 }
