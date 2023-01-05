@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 14:20:50 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 18:06:26 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/05 09:09:13 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,6 @@ void	check_map(t_data *var)
 	get_position(var);
 	backtracking(var, var->row_user, var->col_user);
 	if (ft_find_char(var->bt_map, 'C') || ft_find_char(var->bt_map, 'E'))
-		display_error(var, "\033[1;33mInvalid map (No path found)!\033[0m\n");
+		display_error(var, "\033[1;33mInvalid map (No path found)!\033[0m");
 	ft_free_arr(var->bt_map);
 }
