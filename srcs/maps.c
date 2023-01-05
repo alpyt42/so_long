@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 18:23:16 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:25:59 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ static void	put_img_a(t_data *var, int row, int col)
 				&var->col_img, &var->row_img);
 	if (var->map[row][col] == 'e')
 		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/coupe.xpm",
+				&var->col_img, &var->row_img);
+	if (var->map[row][col] == 'h')
+		var->img = mlx_xpm_file_to_image(var->mlx, "./sprite/zbc.xpm",
 				&var->col_img, &var->row_img);
 	put_img_b(var, row, col);
 }

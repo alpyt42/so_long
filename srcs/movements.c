@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/29 16:49:17 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 17:16:09 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:40:21 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	up(t_data *var)
 {
+	if (var->map[var->row_user + 1][var->col_user] == 'C')
+		var->arg.obj--;
 	if (var->map[var->row_user + 1][var->col_user] == 'U')
 	{
 		var->map[var->row_user + 1][var->col_user] = 'l';
@@ -21,15 +23,15 @@ static void	up(t_data *var)
 		var->steps++;
 		var->row_user++;
 	}
-	else if (var->map[var->row_user + 1][var->col_user] == 'C')
+	else if (var->map[var->row_user + 1][var->col_user] == 'E')
 	{
-		var->map[var->row_user + 1][var->col_user] = 'P';
+		var->map[var->row_user + 1][var->col_user] = 'h';
 		var->map[var->row_user][var->col_user] = '0';
 		var->steps++;
-		var->arg.obj--;
 		var->row_user++;
 	}
-	else if (var->map[var->row_user + 1][var->col_user] == '0')
+	else if (var->map[var->row_user + 1][var->col_user] == 'C' ||
+			var->map[var->row_user + 1][var->col_user] == '0')
 	{
 		var->map[var->row_user + 1][var->col_user] = 'P';
 		var->map[var->row_user][var->col_user] = '0';
@@ -40,6 +42,8 @@ static void	up(t_data *var)
 
 static void	down(t_data *var)
 {
+	if (var->map[var->row_user - 1][var->col_user] == 'C')
+		var->arg.obj--;
 	if (var->map[var->row_user - 1][var->col_user] == 'U')
 	{
 		var->map[var->row_user - 1][var->col_user] = 'l';
@@ -47,15 +51,15 @@ static void	down(t_data *var)
 		var->steps++;
 		var->row_user--;
 	}
-	else if (var->map[var->row_user - 1][var->col_user] == 'C')
+	else if (var->map[var->row_user - 1][var->col_user] == 'E')
 	{
-		var->map[var->row_user - 1][var->col_user] = 'P';
+		var->map[var->row_user - 1][var->col_user] = 'h';
 		var->map[var->row_user][var->col_user] = '0';
 		var->steps++;
-		var->arg.obj--;
 		var->row_user--;
 	}
-	else if (var->map[var->row_user - 1][var->col_user] == '0')
+	else if (var->map[var->row_user - 1][var->col_user] == 'C' ||
+			var->map[var->row_user - 1][var->col_user] == '0')
 	{
 		var->map[var->row_user - 1][var->col_user] = 'P';
 		var->map[var->row_user][var->col_user] = '0';
@@ -66,6 +70,8 @@ static void	down(t_data *var)
 
 static void	right(t_data *var)
 {
+	if (var->map[var->row_user][var->col_user + 1] == 'C')
+		var->arg.obj--;
 	if (var->map[var->row_user][var->col_user + 1] == 'U')
 	{
 		var->map[var->row_user][var->col_user + 1] = 'l';
@@ -73,15 +79,15 @@ static void	right(t_data *var)
 		var->steps++;
 		var->col_user++;
 	}
-	else if (var->map[var->row_user][var->col_user + 1] == 'C')
+	else if (var->map[var->row_user][var->col_user + 1] == 'E')
 	{
-		var->map[var->row_user][var->col_user + 1] = 'P';
+		var->map[var->row_user][var->col_user + 1] = 'h';
 		var->map[var->row_user][var->col_user] = '0';
 		var->steps++;
-		var->arg.obj--;
 		var->col_user++;
 	}
-	else if (var->map[var->row_user][var->col_user + 1] == '0')
+	else if (var->map[var->row_user][var->col_user + 1] == 'C' ||
+			var->map[var->row_user][var->col_user + 1] == '0')
 	{
 		var->map[var->row_user][var->col_user + 1] = 'P';
 		var->map[var->row_user][var->col_user] = '0';
@@ -92,6 +98,8 @@ static void	right(t_data *var)
 
 static void	left(t_data *var)
 {
+	if (var->map[var->row_user][var->col_user - 1] == 'C')
+		var->arg.obj--;
 	if (var->map[var->row_user][var->col_user - 1] == 'U')
 	{
 		var->map[var->row_user][var->col_user - 1] = 'l';
@@ -99,15 +107,15 @@ static void	left(t_data *var)
 		var->steps++;
 		var->col_user--;
 	}
-	else if (var->map[var->row_user][var->col_user - 1] == 'C')
+	else if (var->map[var->row_user][var->col_user - 1] == 'E')
 	{
-		var->map[var->row_user][var->col_user - 1] = 'P';
+		var->map[var->row_user][var->col_user - 1] = 'h';
 		var->map[var->row_user][var->col_user] = '0';
 		var->steps++;
-		var->arg.obj--;
 		var->col_user--;
 	}
-	else if (var->map[var->row_user][var->col_user - 1] == '0')
+	else if (var->map[var->row_user][var->col_user - 1] == 'C' ||
+			var->map[var->row_user][var->col_user - 1] == '0')
 	{
 		var->map[var->row_user][var->col_user - 1] = 'P';
 		var->map[var->row_user][var->col_user] = '0';
@@ -138,4 +146,7 @@ void	check_move(t_data *var, int key)
 		winner(var, 'R');
 	else if (key == 2)
 		right(var);
+	if ((var->row_ex != var->row_user || var->col_ex != var->col_user)
+		&& var->arg.win == 0)
+		var->map[var->row_ex][var->col_ex] = 'E';
 }
