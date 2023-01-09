@@ -6,7 +6,7 @@
 #    By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 15:07:12 by ale-cont          #+#    #+#              #
-#    Updated: 2023/01/04 15:28:35 by ale-cont         ###   ########.fr        #
+#    Updated: 2023/01/09 15:53:46 by ale-cont         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ OBJECTS = $(SOURCES:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -I .
 
-all :    $(NAME)
+all : $(NAME)
 
 $(NAME) : $(OBJECTS)
 	$(AR) rcs $@ $^
@@ -45,4 +45,4 @@ fclean : clean
 re : fclean
 	$(MAKE) all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
