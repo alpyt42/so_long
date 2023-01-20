@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:54:43 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/05 11:25:59 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/20 17:16:05 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	map_size(t_data *var, char **argv)
 	fd = open(argv[1], O_RDONLY, 0777);
 	if (fd == -1)
 		display_error(var, strerror(errno));
-	res_gnl = gnl(fd);
+	res_gnl = get_next_line(fd);
 	while (res_gnl)
 	{
 		var->col_map = ft_strlen(res_gnl);
 		free(res_gnl);
 		var->row_map++;
-		res_gnl = gnl(fd);
+		res_gnl = get_next_line(fd);
 	}
 	free(res_gnl);
 	close(fd);

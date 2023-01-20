@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:37:22 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 15:28:58 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:54:15 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,9 @@ int	ft_putnbr_uns(unsigned long nbr, char *base)
 	i = 0;
 	if (!base)
 		return (0);
-	if (nbr < 0)
-	{
-		i ++;
-		nbr *= -1;
-	}
 	while (base[lbase])
 		lbase++;
-	if (nbr >= 0 && nbr < lbase)
+	if (nbr < lbase)
 		i += ft_putchar(base[nbr]);
 	else
 	{

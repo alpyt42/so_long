@@ -6,7 +6,7 @@
 /*   By: ale-cont <ale-cont@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:43:18 by ale-cont          #+#    #+#             */
-/*   Updated: 2023/01/04 15:28:03 by ale-cont         ###   ########.fr       */
+/*   Updated: 2023/01/20 15:52:27 by ale-cont         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@
 # include <stdint.h>
 # include <stdio.h>
 # include <stdarg.h>
+# include <stdio.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
+# define FD_MAX 10240
 
 typedef struct s_list
 {
@@ -30,6 +34,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+char	*get_next_line(int fd);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 int		ft_isalnum(int c);
@@ -74,11 +79,6 @@ void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*ft_strstr(char *str, char *to_find);
-char	*gnl_strjoin(char *left_str, char *buf);
-int		gnl_locate_return(char *s);
-char	*gnl(int fd);
-char	*gnl_new_str(char *left_str);
-char	*gnl_fill_line(char *left_str);
 char	**ft_arrdup(char **arr);
 int		ft_arrlen(char **arr);
 void	ft_free_arr(char **arr);
